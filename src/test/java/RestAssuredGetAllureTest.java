@@ -22,7 +22,6 @@ public class RestAssuredGetAllureTest {
                 .get("/api/users/me")
                 .then().statusCode(200);
     }
-
     @Test
     public void checkUserName() {
         given()
@@ -30,16 +29,13 @@ public class RestAssuredGetAllureTest {
                 .get("/api/users/me")
                 .then().assertThat().body("data.name",equalTo("Аристарх Сократович"));
     }
-
     @Test
     public void checkUserNameAndPrintResponseBody() {
 
         Response response =given().auth().oauth2(bearerToken).get("/api/users/me");
         // отправили запрос и сохранили ответ в переменную response - экземпляр класса Response
-
         response.then().assertThat().body("data.name",equalTo("Аристарх Сократович"));
         // проверили, что в теле ответа ключу name соответствует нужное имя пользователя
-
         System.out.println(response.body().asString()); // вывели тело ответа на экран
 
     }
